@@ -1,17 +1,17 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 
+
 import '../../controller/rotues.dart';
 
-
-class ForgotPassword extends StatefulWidget {
-  const ForgotPassword({Key? key}) : super(key: key);
+class SignUp extends StatefulWidget {
+  const SignUp({Key? key}) : super(key: key);
 
   @override
-  State<ForgotPassword> createState() => _ForgotPasswordState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _ForgotPasswordState extends State<ForgotPassword> {
+class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -23,13 +23,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               'https://media.licdn.com/dms/image/C560BAQGo721LuYGevA/company-logo_200_200/0/1676210919351?e=1687392000&v=beta&t=HUoibVJrH9KSMChvzs7CmuvJcaqh3PD5iicy5-XHk2s',
               fit: BoxFit.cover,
             ),
+            
             const SizedBox(
-              height: 35,
-              width: 30,
+              height: 20,
+              width: 20,
             ),
             AnimatedTextKit(
                 animatedTexts: [
-                  TypewriterAnimatedText('Send Reset Link!',
+                  TypewriterAnimatedText('Create Your Account!',
                       textStyle: const TextStyle(
                         color: Colors.red,
                         fontSize: 30,
@@ -49,43 +50,39 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               ),
             Padding(
               padding: const EdgeInsets.symmetric(
-                vertical: 32,
-                horizontal: 16,
+                vertical: 16,
+                horizontal: 32,
               ),
               child: Column(
                 children: [
                   TextFormField(
                     decoration: const InputDecoration(
-                      hintText: 'Enter Your Email',
-                      labelText: 'Email',
-                      border: OutlineInputBorder(),
+                      icon: Icon(Icons.person),
+                      hintText: 'Enter Your Full Name',
+                      labelText: 'Full Name',
                     ),
                   ),
                   const SizedBox(
                     height: 10,
                     width: 10,
                   ),
-                  TextButton.icon(
-                    onPressed: (() {}),
-                    icon: const Icon(
-                      Icons.read_more,
-                      size: 28,
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      icon: Icon(Icons.email),
+                      hintText: 'Enter Your Email/Username',
+                      labelText: 'Email or Username',
                     ),
-                    label: Container(
-                      alignment: Alignment.center,
-                      width: 150,
-                      height: 35,
-                      child: const Text(
-                        'Send Reset Link',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.white,
-                        ),
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(25),
-                      ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                    width: 10,
+                  ),
+                  TextFormField(
+                    obscureText: true,
+                    decoration: const InputDecoration(
+                      icon: Icon(Icons.lock),
+                      hintText: 'Enter Your Password',
+                      labelText: 'Password',
                     ),
                   ),
                   const SizedBox(
@@ -94,20 +91,17 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   ),
                   TextButton.icon(
                     onPressed: (() {
-                      Navigator.pushNamed(context, MyRoutes.loginScreen);
+                      //sign up
                     }),
-                    icon: const Icon(
-                      Icons.home,
-                      size: 28,
-                    ),
+                    icon: const Icon(Icons.create),
                     label: Container(
                       alignment: Alignment.center,
                       width: 150,
                       height: 35,
                       child: const Text(
-                        'Return Home',
+                        'Sign Up',
                         style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 18,
                           color: Colors.white,
                         ),
                       ),
@@ -115,6 +109,33 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(25),
                       ),
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      const Text('Already have an account?'),
+                      TextButton(
+                        onPressed: (() {
+                          Navigator.pushNamed(
+                            context,
+                            MyRoutes.loginScreen,
+                          );
+                        }),
+                        child: const Text(
+                          'Sign In',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                    mainAxisAlignment: MainAxisAlignment.center,
+                  ),
+                  const Text(
+                    'By signing up you agree to our terms, conditions and privacy Policy.',
+                    style: TextStyle(
+                      fontSize: 13,
                     ),
                   ),
                 ],

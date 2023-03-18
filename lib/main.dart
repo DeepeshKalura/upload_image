@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        MyRoutes.homeScreen: (context) => UploadScreen(),
+        MyRoutes.uploadScreen: (context) => UploadScreen(),
         MyRoutes.loginScreen: (context) => LoginScreen(),
         MyRoutes.signUp: (context) => SignUp(),
         MyRoutes.forgotPassword: (context) => ForgotPassword(),
