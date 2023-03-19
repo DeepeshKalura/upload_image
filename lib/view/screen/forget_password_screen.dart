@@ -30,8 +30,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             children: [
               Container(
                 margin: const EdgeInsets.all(20),
-                child: Image.network(
-                  'https://media.licdn.com/dms/image/C560BAQGo721LuYGevA/company-logo_200_200/0/1676210919351?e=1687392000&v=beta&t=HUoibVJrH9KSMChvzs7CmuvJcaqh3PD5iicy5-XHk2s',
+                // child: Image.network(
+                //   'https://media.licdn.com/dms/image/C560BAQGo721LuYGevA/company-logo_200_200/0/1676210919351?e=1687392000&v=beta&t=HUoibVJrH9KSMChvzs7CmuvJcaqh3PD5iicy5-XHk2s',
+                //   fit: BoxFit.cover,
+                // ),
+                child:  Image.asset(
+                  'assets/image/main.png',
                   fit: BoxFit.cover,
                 ),
               ),

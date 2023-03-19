@@ -24,11 +24,16 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               Container(
                 margin: const EdgeInsets.all(10),
-                
-                child: Image.network(
-                  'https://media.licdn.com/dms/image/C560BAQGo721LuYGevA/company-logo_200_200/0/1676210919351?e=1687392000&v=beta&t=HUoibVJrH9KSMChvzs7CmuvJcaqh3PD5iicy5-XHk2s',
+
+                child:  Image.asset(
+                  'assets/image/main.png',
                   fit: BoxFit.cover,
                 ),
+                
+                // child: Image.network(
+                //   'https://media.licdn.com/dms/image/C560BAQGo721LuYGevA/company-logo_200_200/0/1676210919351?e=1687392000&v=beta&t=HUoibVJrH9KSMChvzs7CmuvJcaqh3PD5iicy5-XHk2s',
+                //   fit: BoxFit.cover,
+                // ),
               ),
               AnimatedTextKit(
                 animatedTexts: [
@@ -72,33 +77,39 @@ class _LoginScreenState extends State<LoginScreen> {
                         setState(() {});
                       },
                     ),
-                   Row(
-                     children: [
-                      SizedBox(width: MediaQuery.of(context).size.width * 0.1,),
-                       RoundedButtonWidget(
-                          onpressed: () {
-                            Navigator.pushNamed(context, MyRoutes.uploadScreen);
-                          },
-                          buttonText: 'Login',
-                          width: MediaQuery.of(context).size.width * 0.74,
-                        ),
-                     ],
-                   ),
-                    Row(
-                      children: [
-                    SizedBox(width: MediaQuery.of(context).size.width * 0.55,),
-                        
-                          InkWell(
-                            onTap:  () {
-                            Navigator.pushNamed(context, MyRoutes.forgotPassword);
+                   SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                     child: Row(
+                       children: [
+                        SizedBox(width: MediaQuery.of(context).size.width * 0.1,),
+                         RoundedButtonWidget(
+                            onpressed: () {
+                              Navigator.pushNamed(context, MyRoutes.uploadScreen);
                             },
-                            child: Text(
-                              'Forgot Password?',
-                              style: Theme.of(context).textTheme.bodySmall
-                            ),
+                            buttonText: 'Login',
+                            width: MediaQuery.of(context).size.width * 0.74,
                           ),
-                        
-                      ],
+                       ],
+                     ),
+                   ),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                      SizedBox(width: MediaQuery.of(context).size.width * 0.55,),
+                          
+                            InkWell(
+                              onTap:  () {
+                              Navigator.pushNamed(context, MyRoutes.forgotPassword);
+                              },
+                              child: Text(
+                                'Forgot Password?',
+                                style: Theme.of(context).textTheme.bodySmall
+                              ),
+                            ),
+                          
+                        ],
+                      ),
                     ),
                     Row(
                      mainAxisAlignment: MainAxisAlignment.center,
