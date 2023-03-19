@@ -1,6 +1,8 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:upload_image/view/widget/rounded_widget.dart';
 
+import '../../controller/firebase_controller.dart';
 import '../../controller/rotues.dart';
 
 
@@ -12,115 +14,85 @@ class ForgotPassword extends StatefulWidget {
 }
 
 class _ForgotPasswordState extends State<ForgotPassword> {
+  final TextEditingController _emailController = TextEditingController();
+  final FirbaseController _firebaseController = FirbaseController();
+  @override
+  void dispose() {
+    super.dispose();
+    _emailController.dispose();
+  }
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.white,
-      child: SafeArea(
-        child: Column(
-          children: [
-            Image.network(
-              'https://media.licdn.com/dms/image/C560BAQGo721LuYGevA/company-logo_200_200/0/1676210919351?e=1687392000&v=beta&t=HUoibVJrH9KSMChvzs7CmuvJcaqh3PD5iicy5-XHk2s',
-              fit: BoxFit.cover,
-            ),
-            const SizedBox(
-              height: 35,
-              width: 30,
-            ),
-            AnimatedTextKit(
-                animatedTexts: [
-                  TypewriterAnimatedText('Send Reset Link!',
-                      textStyle: const TextStyle(
-                        color: Colors.red,
-                        fontSize: 30,
-                        fontStyle: FontStyle.italic,
-                        fontFamily: 'Times New Roman',
-                        fontWeight: FontWeight.w500,
-                      ),
-                      speed: const Duration(
-                        milliseconds: 450,
-                      ),),
-                ],
-                onTap: () {
-                  debugPrint("Welcome back!");
-                },
-                isRepeatingAnimation: true,
-                totalRepeatCount: 2,
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                margin: const EdgeInsets.all(20),
+                child: Image.network(
+                  'https://media.licdn.com/dms/image/C560BAQGo721LuYGevA/company-logo_200_200/0/1676210919351?e=1687392000&v=beta&t=HUoibVJrH9KSMChvzs7CmuvJcaqh3PD5iicy5-XHk2s',
+                  fit: BoxFit.cover,
+                ),
               ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 32,
-                horizontal: 16,
-              ),
-              child: Column(
-                children: [
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      hintText: 'Enter Your Email',
-                      labelText: 'Email',
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                    width: 10,
-                  ),
-                  TextButton.icon(
-                    onPressed: (() {}),
-                    icon: const Icon(
-                      Icons.read_more,
-                      size: 28,
-                    ),
-                    label: Container(
-                      alignment: Alignment.center,
-                      width: 150,
-                      height: 35,
-                      child: const Text(
-                        'Send Reset Link',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.white,
-                        ),
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(25),
+              
+              AnimatedTextKit(
+                  animatedTexts: [
+                    TypewriterAnimatedText('Send Reset Link!',
+                        textStyle: Theme.of(context).textTheme.titleLarge,
+                        speed: const Duration(
+                          milliseconds: 450,
+                        ),),
+                  ],
+                  
+                  isRepeatingAnimation: true,
+                  totalRepeatCount: 6,
+                ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 32,
+                  horizontal: 16,
+                ),
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: _emailController,
+                      decoration: const InputDecoration(
+                        hintText: 'Enter Your Email',
+                        border: OutlineInputBorder(),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                    width: 10,
-                  ),
-                  TextButton.icon(
-                    onPressed: (() {
+                    const SizedBox(
+                      height: 10,
+                      width: 10,
+                    ),
+                    RoundedButtonWidget(buttonText: 'Reset Link', width: MediaQuery.of(context).size.width * 0.8, onpressed: () async {
+                     final result = await _firebaseController.forgotPassword(_emailController.text);
+                     if(result == 'Successful'){
+                      
+                       ScaffoldMessenger.of(context).showSnackBar(
+                         SnackBar(
+                           content: Text(result),
+                           duration: const Duration(seconds: 2),
+                         ),
+                       );
+                        Navigator.pushNamed(context, MyRoutes.loginScreen);
+                     
+                    }else{
+                      ScaffoldMessenger.of(context).showSnackBar(
+                         SnackBar(
+                           content: Text(result),
+                         ),
+                       );
+                    }}),
+                    RoundedButtonWidget(buttonText: 'LogIn', width: MediaQuery.of(context).size.width * 0.8, onpressed: () {
                       Navigator.pushNamed(context, MyRoutes.loginScreen);
                     }),
-                    icon: const Icon(
-                      Icons.home,
-                      size: 28,
-                    ),
-                    label: Container(
-                      alignment: Alignment.center,
-                      width: 150,
-                      height: 35,
-                      child: const Text(
-                        'Return Home',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.white,
-                        ),
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

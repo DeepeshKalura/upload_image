@@ -1,6 +1,7 @@
-import 'package:firebase_core/firebase_core.dart';
 import'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'controller/rotues.dart';
 import 'firebase_options.dart';
@@ -25,7 +26,42 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.orange,
+        primarySwatch: Colors.red,
+        textTheme: TextTheme(
+          titleSmall: GoogleFonts.adventPro(
+            fontSize: 12
+          ),
+          titleMedium: GoogleFonts.openSans(
+            fontSize: 16,
+            color: Colors.black,
+            fontWeight: FontWeight.w500,
+          ),
+          titleLarge: GoogleFonts.openSans(
+            fontSize: 30,
+            color: Colors.red,
+            fontWeight: FontWeight.w500,
+            fontStyle: FontStyle.italic,
+          ),
+          bodySmall: GoogleFonts.aclonica(
+            fontSize: 12,
+            color: Colors.deepOrange,
+            fontWeight: FontWeight.bold,
+
+          ),
+          bodyMedium: GoogleFonts.aclonica(
+            fontSize: 16,
+            color: Colors.white,
+            fontWeight: FontWeight.w700,
+
+          ),
+          displaySmall: GoogleFonts.openSans(
+            fontSize: 13,
+            color: Colors.black,
+            fontWeight: FontWeight.w600,
+          ),
+          
+        ),
+        
       ),
       initialRoute: '/',
 

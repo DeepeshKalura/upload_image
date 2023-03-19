@@ -6,8 +6,6 @@ import 'package:upload_image/view/widget/rounded_widget.dart';
 import '../../controller/firebase_controller.dart';
 import '../../controller/rotues.dart';
 
-// TODO: Add the TextStyle in main dart
-
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
 
