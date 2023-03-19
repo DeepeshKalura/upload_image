@@ -37,31 +37,23 @@ class _SignUpState extends State<SignUp> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.network(
-                  'https://media.licdn.com/dms/image/C560BAQGo721LuYGevA/company-logo_200_200/0/1676210919351?e=1687392000&v=beta&t=HUoibVJrH9KSMChvzs7CmuvJcaqh3PD5iicy5-XHk2s',
-                  fit: BoxFit.cover,
-                ),
-                
-                const SizedBox(
-                  height: 20,
-                  width: 20,
+                Container(
+                  margin: const EdgeInsets.all(20),
+                  child: Image.network(
+                    'https://media.licdn.com/dms/image/C560BAQGo721LuYGevA/company-logo_200_200/0/1676210919351?e=1687392000&v=beta&t=HUoibVJrH9KSMChvzs7CmuvJcaqh3PD5iicy5-XHk2s',
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 AnimatedTextKit(
                     animatedTexts: [
                       TypewriterAnimatedText('Create Your Account!',
-                          textStyle: const TextStyle(
-                            color: Colors.red,
-                            fontSize: 30,
-                            fontStyle: FontStyle.italic,
-                            fontFamily: 'Times New Roman',
-                            fontWeight: FontWeight.w500,
-                          ),
+                          textStyle: Theme.of(context).textTheme.titleLarge,
                           speed: const Duration(
                             milliseconds: 450,
                           ),),
                     ],
                     isRepeatingAnimation: true,
-                    totalRepeatCount: 2,
+                    totalRepeatCount: 6,
                   ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
@@ -107,35 +99,40 @@ class _SignUpState extends State<SignUp> {
                         height: 10,
                         width: 10,
                       ),
-                      RoundedButtonWidget(
-                        onpressed: (() async {
-
-                          final result = await _firbaseController.signUpWithEmailAndPassword(
-                            _emailController.text,
-                            _passwordController.text,
-                          );
-                          // Implement the scaffold messager 
-                          if (result == "Successful") {
-                            Navigator.pushNamed(
-                              context,
-                              MyRoutes.uploadScreen,
-                            );
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(result),
-                              ),
-                            );
-                          }
-                        }),
-                        buttonText: 
-                          'Sign Up',
-                          width: MediaQuery.of(context).size.width * 0.8,
-                          
-                      ),
                       Row(
                         children: [
-                          const Text('Already have an account?'),
+                          SizedBox(width: MediaQuery.of(context).size.width * 0.1,),
+                          RoundedButtonWidget(
+                            onpressed: (() async {
+
+                              final result = await _firbaseController.signUpWithEmailAndPassword(
+                                _emailController.text,
+                                _passwordController.text,
+                              );
+                              // Implement the scaffold messager 
+                              if (result == "Successful") {
+                                Navigator.pushNamed(
+                                  context,
+                                  MyRoutes.uploadScreen,
+                                );
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(result),
+                                  ),
+                                );
+                              }
+                            }),
+                            width: MediaQuery.of(context).size.width * 0.74,
+                            buttonText: 
+                              'Sign Up',
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Already have an account?', style: Theme.of(context).textTheme.displaySmall),
                           TextButton(
                             onPressed: (() {
                               Navigator.pushNamed(
@@ -152,7 +149,6 @@ class _SignUpState extends State<SignUp> {
                             ),
                           ),
                         ],
-                        mainAxisAlignment: MainAxisAlignment.center,
                       ),
                       
                     ],
