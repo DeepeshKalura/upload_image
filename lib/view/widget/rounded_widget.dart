@@ -13,50 +13,48 @@ class RoundedButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Container(
-        decoration: BoxDecoration(
-          
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            stops: [0.0, 1.0],
-            colors: [
-              Colors.red.shade900,
-              Colors.orange.shade900,
-            ],
-          ),
-          // color: Colors.orange.shade300,
-          borderRadius: BorderRadius.circular(10),
+    return Container(
+      margin: const EdgeInsets.only(
+        top: 10,
+        bottom: 7,
+      ),
+      decoration: BoxDecoration(
+        
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Colors.red.shade900,
+            Colors.orange,
+          ],
         ),
-        child: ElevatedButton(
-          style: ButtonStyle(
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
+        // color: Colors.orange.shade300,
+        borderRadius: BorderRadius.circular(11),
+      ),
+      child: ElevatedButton(
+        style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
               ),
-              minimumSize: MaterialStateProperty.all(Size(width, 50)),
-              
-              elevation: MaterialStateProperty.all(0),
+            ),
+            minimumSize: MaterialStateProperty.all(Size(width, 50),),
+            backgroundColor: MaterialStateProperty.all(Colors.transparent),
+
+            
+            elevation: MaterialStateProperty.all(0),
+        ),
+        onPressed: () {
+          onpressed();
+        },
+        child: Padding(
+          padding: const EdgeInsets.only(
+            top: 10,
+            bottom: 10,
           ),
-          onPressed: () {
-            onpressed();
-          },
-          child: Padding(
-            padding: const EdgeInsets.only(
-              top: 10,
-              bottom: 10,
-            ),
-            child: Text(
-              buttonText,
-              style: TextStyle(
-                fontSize: 18,
-                // fontWeight: FontWeight.w700,
-                color: Colors.white,
-              ),
-            ),
+          child: Text(
+            buttonText,
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
         ),
       ),
