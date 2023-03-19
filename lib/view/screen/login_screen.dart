@@ -1,8 +1,8 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:upload_image/view/widget/rounded_widget.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 import '../../controller/rotues.dart';
+import '../../view/widget/rounded_widget.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -16,7 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -24,31 +24,22 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               Container(
                 margin: const EdgeInsets.all(10),
+                
                 child: Image.network(
                   'https://media.licdn.com/dms/image/C560BAQGo721LuYGevA/company-logo_200_200/0/1676210919351?e=1687392000&v=beta&t=HUoibVJrH9KSMChvzs7CmuvJcaqh3PD5iicy5-XHk2s',
                   fit: BoxFit.cover,
-                  colorBlendMode: BlendMode.lighten,
                 ),
               ),
               AnimatedTextKit(
                 animatedTexts: [
                   TypewriterAnimatedText('Kreedy Parther App',
-                      textStyle: const TextStyle(
-                        color: Colors.red,
-                        fontSize: 30,
-                        fontStyle: FontStyle.italic,
-                        fontFamily: 'Times New Roman',
-                        fontWeight: FontWeight.w500,
-                      ),
+                      textStyle: Theme.of(context).textTheme.titleLarge,
                       speed: const Duration(
                         milliseconds: 450,
                       ),),
                 ],
-                onTap: () {
-                  debugPrint("Welcome back!");
-                },
                 isRepeatingAnimation: true,
-                totalRepeatCount: 2,
+                totalRepeatCount: 6,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(
@@ -63,7 +54,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         decoration: const InputDecoration(
                           icon: Icon(Icons.email),
                           hintText: 'Enter Your Email',
-                          
                           border: OutlineInputBorder(),
                         ),
                         onChanged: (value) {
@@ -76,20 +66,24 @@ class _LoginScreenState extends State<LoginScreen> {
                       decoration: const InputDecoration(
                         icon: Icon(Icons.lock),
                         hintText: 'Enter Your Password',
-                      
                         border: OutlineInputBorder(),
                       ),
                       onChanged: (value) {
                         setState(() {});
                       },
                     ),
-                   RoundedButtonWidget(
-                      onpressed: () {
-                        Navigator.pushNamed(context, MyRoutes.uploadScreen);
-                      },
-                      buttonText: 'Login',
-                      width: MediaQuery.of(context).size.width * 0.8,
-                    ),
+                   Row(
+                     children: [
+                      SizedBox(width: MediaQuery.of(context).size.width * 0.1,),
+                       RoundedButtonWidget(
+                          onpressed: () {
+                            Navigator.pushNamed(context, MyRoutes.uploadScreen);
+                          },
+                          buttonText: 'Login',
+                          width: MediaQuery.of(context).size.width * 0.74,
+                        ),
+                     ],
+                   ),
                     Row(
                       children: [
                     SizedBox(width: MediaQuery.of(context).size.width * 0.55,),
@@ -98,16 +92,19 @@ class _LoginScreenState extends State<LoginScreen> {
                             onTap:  () {
                             Navigator.pushNamed(context, MyRoutes.forgotPassword);
                             },
-                            child: const Text(
+                            child: Text(
                               'Forgot Password?',
+                              style: Theme.of(context).textTheme.bodySmall
                             ),
                           ),
                         
                       ],
                     ),
                     Row(
+                     mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text('Don\'t have an account?'),
+                        Text('Don\'t have an account?', 
+                        style: Theme.of(context).textTheme.displaySmall,),
                         TextButton(
                           onPressed: (() {
                             Navigator.pushNamed(
@@ -124,7 +121,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                       ],
-                      mainAxisAlignment: MainAxisAlignment.center,
                     ),
                   ],
                 ),
